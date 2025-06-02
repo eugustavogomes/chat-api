@@ -18,15 +18,11 @@ Funcionalidades
 - Layout responsivo e clean.
 
 Como rodar o projeto localmente
-
-### Backend
-
-```bash
 cd ChatApp
 dotnet run
 
 ## Frontend
-# Chat Frontend
+# chat-frontend
 
 Frontend do projeto **Chat App**, desenvolvido com **Vite**, **React** e **Bootstrap** para estilização.
 
@@ -47,15 +43,13 @@ Este frontend se conecta a uma API backend feita em C# ASP.NET Core, simulando u
 npm install
 
 ## Inicie o frontend:
+npm run dev
 
-Em:
+## Em:
 http://localhost:5173
 
 
-npm run dev
-### 1. Clone o repositório
 
-```bash
 git clone https://github.com/SEU-USUARIO/chat-app.git
 cd chat-app/chat-frontend
 
