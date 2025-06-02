@@ -1,0 +1,20 @@
+# .NET
+ChatApp/bin/
+ChatApp/obj/
+ChatApp/*.user
+ChatApp/*.vspscc
+ChatApp/.vs/
+ChatApp/*.suo
+
+# Node.js
+chat-frontend/node_modules/
+chat-frontend/dist/
+chat-frontend/.env
+chat-frontend/.DS_Store
+
+# Vite
+chat-frontend/.vite/
+
+# General
+*.log
+.env

@@ -1,0 +1,15 @@
+@ChatApp_HostAddress = http://localhost:8000
+
+###
+# Lista todas as mensagens
+GET {{ChatApp_HostAddress}}/message
+Accept: application/json
+
+###
+# Adiciona uma nova mensagem
+POST {{ChatApp_HostAddress}}/message
+Content-Type: application/json
+
+{
+  "content": "Olá, esta é minha primeira mensagem!"
+}
