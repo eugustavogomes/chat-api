@@ -49,10 +49,6 @@ npm run dev
 http://localhost:5173
 
 
-
-git clone https://github.com/SEU-USUARIO/chat-app.git
-cd chat-app/chat-frontend
-
 O Vite está configurado para redirecionar requisições da API no arquivo vite.config.js:
 server: {
   proxy: {
