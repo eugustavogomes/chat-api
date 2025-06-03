@@ -8,8 +8,11 @@ namespace ChatApp.Models
 
         [Required(ErrorMessage = "O conteúdo da mensagem é obrigatório.")]
         [MaxLength(500, ErrorMessage = "O conteúdo não pode exceder 500 caracteres.")]
-        public required string Content { get; set; }  // <-- required aqui!
+        public required string Content { get; set; }
 
         public DateTime Timestamp { get; set; }
+
+        [Required]
+        public string Sender { get; set; } = "user";  
     }
 }

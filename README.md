@@ -1,58 +1,109 @@
+ChatApp — Fullstack WhatsApp Clone com Inteligência Artificial
+Um projeto fullstack de chat que simula um WhatsApp simplificado, onde o usuário conversa com um bot de IA inteligente, integrado via Cohere AI.
 
-## Backend
-# ChatApp
+🚀 Tecnologias Utilizadas
+🔧 Backend
+C# (.NET 8 Web API)
 
-Um projeto fullstack de chat, simulando um WhatsApp simplificado.
+ASP.NET Core MVC
 
- Tecnologias
+Integração com IA: Cohere API
 
-- Backend: C# (.NET Core Web API)
-- Frontend: Vite + React + Bootstrap
-- Comunicação: Axios (HTTP API)
+Swagger para documentação da API (automático)
 
-Funcionalidades
+🎨 Frontend
+React (com Vite)
 
-- Envio de mensagens.
-- Lista de mensagens atualiza a cada 3 segundos.
-- Validação de campos obrigatórios.
-- Layout responsivo e clean.
+Axios para comunicação HTTP
 
-Como rodar o projeto localmente
+Bootstrap 5 para estilização responsiva
+
+💡 Funcionalidades
+📩 Envio de mensagens pelo chat.
+
+🤖 Resposta automática via IA da Cohere.
+
+📝 Validação de campos obrigatórios.
+
+🔄 Atualização automática da lista de mensagens (Polling).
+
+💬 Bot digitando... — simulação visual enquanto a IA responde.
+
+🎨 Layout responsivo e clean, estilo WhatsApp.
+
+🚀 Separação por MVC no Backend.
+
+⚙️ Como rodar o projeto localmente
+
+📦 Backend — ChatApp (.NET 8)
+1. Clone o repositório:
+
+2. Acesse a pasta do backend:
+
 cd ChatApp
+
+3. Adicione um arquivo appsettings.json:
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Cohere": {
+    "ApiKey": "SUA_API_KEY_AQUI"
+  }
+}
+
+4. Rode o backend:
 dotnet run
 
-## Frontend
-# chat-frontend
+O backend rodará em:
+http://localhost:8000
 
-Frontend do projeto **Chat App**, desenvolvido com **Vite**, **React** e **Bootstrap** para estilização.
+📦 Frontend — chat-frontend (React + Vite)
+1. Acesse a pasta do frontend:
 
-Este frontend se conecta a uma API backend feita em C# ASP.NET Core, simulando um aplicativo de chat em tempo real (tipo WhatsApp básico).
+cd chat-frontend
 
----
-
-## Tecnologias Utilizadas
-
-- [React]
-- [Vite]
-- [Axios]
-- [Bootstrap]
-
----
-
-## 📦 Instalação e Execução
+2. Instale as dependências:
 npm install
 
-## Inicie o frontend:
+3. Inicie o frontend:
 npm run dev
 
-## Em:
+O frontend estará disponível em:
 http://localhost:5173
 
-
-O Vite está configurado para redirecionar requisições da API no arquivo vite.config.js:
+🌐 Configuração de Proxy (Frontend)
+O Vite está configurado para redirecionar chamadas da API:
+// vite.config.js
 server: {
   proxy: {
     '/message': 'http://localhost:8000'
   }
 }
+Isso garante que o Frontend possa fazer requisições para o Backend sem problemas de CORS durante o desenvolvimento.
 
+📚 Documentação da API
+GET /message → Retorna todas as mensagens.
+
+POST /message → Envia uma nova mensagem (o bot responderá automaticamente).
+
+A documentação Swagger é gerada automaticamente em:
+http://localhost:8000/swagger
+🧠 Sobre a IA — Cohere Integration
+
+Este projeto utiliza a API de Chat da Cohere:
+
+Endpoint: https://api.cohere.ai/v1/chat
+
+Fluxo:
+
+Usuário envia mensagem.
+Backend salva a mensagem.
+Backend chama a API da Cohere para gerar a resposta.
+Backend salva a resposta como mensagem do bot.
+Frontend atualiza automaticamente a lista de mensagens.

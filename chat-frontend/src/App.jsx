@@ -4,12 +4,19 @@ import api from './api';
 function App() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [botTyping, setBotTyping] = useState(false); 
   const messagesEndRef = useRef(null);
 
   const fetchMessages = async () => {
     try {
       const response = await api.get('/');
       setMessages(response.data);
+
+     
+      const hasBotResponse = response.data.some(msg => msg.sender === 'bot');
+      if (hasBotResponse) {
+        setBotTyping(false); 
+      }
     } catch (error) {
       console.error('Erro ao buscar mensagens', error);
     }
@@ -20,15 +27,10 @@ function App() {
     try {
       await api.post('/', { content: newMessage });
       setNewMessage('');
-      fetchMessages();
+      setBotTyping(true);
+      setTimeout(fetchMessages, 1500); 
     } catch (error) {
       console.error('Erro ao enviar mensagem', error);
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      sendMessage();
     }
   };
 
@@ -38,7 +40,7 @@ function App() {
 
   useEffect(() => {
     fetchMessages();
-    const interval = setInterval(fetchMessages, 3000);
+    const interval = setInterval(fetchMessages, 2000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -48,7 +50,7 @@ function App() {
 
   return (
     <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      <div className="card shadow" style={{ width: '100%', maxWidth: '400px', borderRadius: '20px' }}>
+      <div className="card shadow" style={{ width: '100%', maxWidth: '500px', borderRadius: '20px' }}>
         <div className="card-header bg-primary text-white text-center rounded-top" style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
           <h3 className="my-2">💬 Chat App</h3>
         </div>
@@ -57,13 +59,20 @@ function App() {
             <p className="text-center text-muted">Nenhuma mensagem ainda...</p>
           ) : (
             messages.map(msg => (
-              <div key={msg.id} className="d-flex flex-column mb-3">
-                <small className="text-muted">{new Date(msg.timestamp).toLocaleTimeString()}</small>
-                <div className="p-2 rounded" style={{ backgroundColor: '#d1e7dd', alignSelf: 'flex-start', maxWidth: '80%' }}>
-                  {msg.content}
+              <div key={msg.id} className={`d-flex mb-3 ${msg.sender === 'user' ? 'justify-content-end' : 'justify-content-start'}`}>
+                <div className={`p-2 rounded ${msg.sender === 'user' ? 'bg-success text-white' : 'bg-light text-dark'}`} style={{ maxWidth: '80%' }}>
+                  <small className="d-block">{msg.content}</small>
+                  <small className="text-muted d-block" style={{ fontSize: '0.75rem' }}>{new Date(msg.timestamp).toLocaleTimeString()}</small>
                 </div>
               </div>
             ))
+          )}
+          {botTyping && ( 
+            <div className="d-flex mb-3 justify-content-start">
+              <div className="p-2 rounded bg-light text-dark" style={{ maxWidth: '80%' }}>
+                <small className="d-block"><i>Bot está digitando...</i></small>
+              </div>
+            </div>
           )}
           <div ref={messagesEndRef} />
         </div>
@@ -74,7 +83,7 @@ function App() {
               className="form-control rounded-pill"
               value={newMessage}
               onChange={e => setNewMessage(e.target.value)}
-              onKeyDown={handleKeyDown}  
+              onKeyDown={e => e.key === 'Enter' && sendMessage()}
               placeholder="Digite sua mensagem..."
             />
             <button

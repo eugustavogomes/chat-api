@@ -12,6 +12,11 @@ chat-frontend/dist/
 chat-frontend/.env
 chat-frontend/.DS_Store
 
+# Ignorar configurações sensíveis do backend
+ChatApp/appsettings.json
+ChatApp/appsettings.Development.json
+
+
 # Vite
 chat-frontend/.vite/
 
