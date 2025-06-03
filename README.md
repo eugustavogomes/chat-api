@@ -4,7 +4,7 @@ Um projeto fullstack de chat que simula um WhatsApp simplificado, onde o usuári
 ---
 
 <div align="center">
-  <img src="./assets/screenshot.png" alt="ChatApp Screenshot" width="600"/>
+  <img src="./assets/Screenshot.png" alt="ChatApp Screenshot" width="600"/>
 </div>
 
 ---
