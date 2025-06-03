@@ -1,6 +1,14 @@
 ChatApp — Fullstack WhatsApp Clone com Inteligência Artificial
 Um projeto fullstack de chat que simula um WhatsApp simplificado, onde o usuário conversa com um bot de IA inteligente, integrado via Cohere AI.
 
+---
+
+<div align="center">
+  <img src="./assets/screenshot.png" alt="ChatApp Screenshot" width="600"/>
+</div>
+
+---
+
 🚀 Tecnologias Utilizadas
 🔧 Backend
 C# (.NET 8 Web API)
